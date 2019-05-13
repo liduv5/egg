@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章首页</title>
+</head>
+
+<body>
+    <%for(let i = 0;i<list.length;i++){%>
+        <h2><%=list[i].title%></h2><br>
+		<% let cate = list[i].cate;%>
+		<% let author = list[i].author;%>
+	<%for(let j = 0;j<cate.length;j++){%>
+        <h3>分类：<%=cate[j].title%>&nbsp;&nbsp;&nbsp;
+    <%}%>
+    <%for(let k = 0;k<author.length;k++){%>
+        作者：<%=author[k].username%></h3><br>
+    <%}%>
+    <p><%=list[i].content%></p>
+    <hr>
+<%}%>
+</body>
+</html>
