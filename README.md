@@ -1,5 +1,5 @@
 # egg_demo
-这是一个基于egg的网站管理后端框架
+这是一个基于egg+nuxt的网站管理后端框架
 
 
 ## QuickStart
