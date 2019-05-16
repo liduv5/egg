@@ -21,6 +21,8 @@ module.exports = app => {
   router.post("/roles/findOne", controller.role.findOne);
   router.put('/roles', controller.role.update);
   router.del('/roles/:_id', controller.role.delete);
+  router.post('/roles/auth', controller.role.auth);
+  router.post('/roles/getAuth', controller.role.getAuth);
   /* 权限 */
   router.get('/access', controller.access.index);
   router.post('/access', controller.access.add);

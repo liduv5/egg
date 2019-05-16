@@ -36,6 +36,17 @@ class RoleController extends Controller {
     let res = await this.service.role.delete(req)
     this.ctx.body = res
   }
+
+  async auth() {
+    let req = this.ctx.request.body;
+    let res = await this.service.roleAccess.add(req)
+    this.ctx.body = res
+  }
+  async getAuth() {
+    let req = this.ctx.request.body
+    let res = await this.service.roleAccess.find(req)
+    this.ctx.body = res
+  }
 }
 
 // eslint-disable-next-line eol-last

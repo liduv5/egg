@@ -14,38 +14,48 @@
 const Controller = require('egg').Controller;
 
 class AccessController extends Controller {
-    async index() {
-        // 接收get传值 {params:{module_id:'0'}}
-        let req = this.ctx.query;
-        let res = await this.service.access.find(req)   
-        this.ctx.body = res
-      }
-      async findOne() {
-        let req = this.ctx.request.body;
-        let res = await this.service.access.findOne(req)
-        this.ctx.body = res
-      }
-      async add() {
-        let req = this.ctx.request.body;
-        let module_id = req.module_id
-        if (module_id!=='0') {
-            req.module_id = this.app.mongoose.Types.ObjectId(module_id)
+  async index() {
+    let result = await this.ctx.model.Access.aggregate([
+      {
+        $lookup: {
+          from: 'access',
+          localField: '_id',
+          foreignField: 'module_id',
+          as: 'children'
         }
-        let res = await this.service.access.add(req)
-        this.ctx.body = res
+      },
+      {
+        $match: { 'module_id': '0' }
       }
-    
-      async update() {
-        let req = this.ctx.request.body
-        let res = await this.service.access.update(req.id, req.data)
-        this.ctx.body = res
-      }
-    
-      async delete() {
-        let req = this.ctx.params
-        let res = await this.service.access.delete(req)
-        this.ctx.body = res
-      }
+    ]);
+    this.ctx.body = result
+  }
+  async findOne() {
+    let req = this.ctx.request.body;
+    let res = await this.service.access.findOne(req)
+    this.ctx.body = res
+  }
+  async add() {
+    let req = this.ctx.request.body;
+    let module_id = req.module_id
+    if (module_id !== '0') {
+      req.module_id = this.app.mongoose.Types.ObjectId(module_id)
+    }
+    let res = await this.service.access.add(req)
+    this.ctx.body = res
+  }
+
+  async update() {
+    let req = this.ctx.request.body
+    let res = await this.service.access.update(req.id, req.data)
+    this.ctx.body = res
+  }
+
+  async delete() {
+    let req = this.ctx.params
+    let res = await this.service.access.delete(req)
+    this.ctx.body = res
+  }
 }
 
 module.exports = AccessController;
