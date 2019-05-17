@@ -1,3 +1,6 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 /* eslint-disable comma-spacing */
 /* eslint-disable prefer-const */
@@ -32,8 +35,10 @@ class AccessService extends Service {
     }
   }
   async update(id, data) {
-    if (data.module_id) {
+    if (data.module_id !== 0 && data.module_id !== '0') {
       data.module_id = this.app.mongoose.Types.ObjectId(data.module_id)
+    } else {
+      data.module_id = '0'
     }
     let res = await this.ctx.model.Access.updateOne({ _id: id, }, data);
     return res;
