@@ -32,6 +32,9 @@ class AccessService extends Service {
     }
   }
   async update(id, data) {
+    if (data.module_id) {
+      data.module_id = this.app.mongoose.Types.ObjectId(data.module_id)
+    }
     let res = await this.ctx.model.Access.updateOne({ _id: id, }, data);
     return res;
   }
