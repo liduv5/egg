@@ -11,24 +11,24 @@ module.exports = app => {
   router.post("/login", controller.login.index);
   /* 用户 */
   router.get("/users", controller.user.index);
-  router.post("/users", controller.user.addUser);
+  router.post("/users/addUser", controller.user.addUser);
   router.post("/users/findOne", controller.user.findOne);
-  router.put("/users", controller.user.updateUser);
-  router.del("/users/:_id", controller.user.deleteUser);
+  router.put("/users/updateUser", controller.user.updateUser);
+  router.del("/users/deleteUser/:_id", controller.user.deleteUser);
   /* 角色 */
-  router.get('/roles', controller.role.index);
-  router.post('/roles', controller.role.add);
-  router.post("/roles/findOne", controller.role.findOne);
-  router.put('/roles', controller.role.update);
-  router.del('/roles/:_id', controller.role.delete);
-  router.post('/roles/auth', controller.role.auth);
-  router.post('/roles/getAuth', controller.role.getAuth);
+  router.get('/users/roles', controller.role.index);
+  router.post('/users/roles/addRole', controller.role.add);
+  router.post("/users/roles/findOne", controller.role.findOne);
+  router.put('/users/roles/updateRole', controller.role.update);
+  router.del('/users/roles/deleteRole/:_id', controller.role.delete);
+  router.post('/users/roles/auth', controller.role.auth);
+  router.post('/users/roles/getAuth', controller.role.getAuth);
   /* 权限 */
-  router.get('/access', controller.access.index);
-  router.post('/access', controller.access.add);
-  router.post("/access/findOne", controller.access.findOne);
-  router.put('/access', controller.access.update);
-  router.del('/access/:_id', controller.access.delete);
+  router.get('/users/access', controller.access.index);
+  router.post('/users/access/addAccess', controller.access.add);
+  router.post("/users/access/findOne", controller.access.findOne);
+  router.put('/users/access/updateAccess', controller.access.update);
+  router.del('/users/access/deleteAccess/:_id', controller.access.delete);
 
 
   router.get('/menu',controller.menu.index)
