@@ -9,6 +9,7 @@ module.exports = app => {
   router.get("/", controller.home.index);
   /* 登录 */
   router.post("/login", controller.login.index);
+  router.post("/loginOut", controller.login.loginOut);
   /* 用户 */
   router.get("/users", controller.user.index);
   router.post("/users/addUser", controller.user.addUser);

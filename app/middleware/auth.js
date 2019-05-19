@@ -1,20 +1,25 @@
 const url = require('url')
 
-module.exports=(option,app)=>{
-    return async function auth(ctx,next){
+module.exports = (option, app) => {
+    return async function auth(ctx, next) {
         // 设置模板全局变量
         ctx.state.csrf = ctx.csrf;
         let pathname = url.parse(ctx.request.url).pathname
-        /* let name = ctx.cookies.get("userInfo", { httpOnly: false, signed: false });
-        if (name) {
-            console.log('cookie',name)
+
+        if (ctx.session.userinfo) {
+            ctx.state.userinfo = ctx.session.userinfo
+            let hasAuth = await ctx.service.admin.checkAuth()
+            if (hasAuth) {
+                await next()
+            } else {
+                ctx.body = '您没有访问权限！'
+            }
         } else {
-            console.log('cookie','no')
-        } */
-        
-        await next()
-        
-        // await ctx.service.admin.checkAuth()
-        
+            if (pathname === '/login') {
+                await next()
+            } else {
+                return false
+            }
+        }
     }
 }
