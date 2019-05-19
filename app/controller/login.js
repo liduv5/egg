@@ -12,13 +12,12 @@ class LoginController extends Controller {
     this.ctx.session.userinfo = res
     this.ctx.body = res
   }
-  async loginOut(){
+  async logout() {
     let req = this.ctx.request.body;
-    if (req.nuxtLoginOut) {
+    if (req.nuxtLogout) {
       this.ctx.session.userinfo = null
     }
-    console.log(this.ctx.session.userinfo)
-    this.ctx.body ='ok'
+    this.ctx.body = 'ok'
   }
 }
 
