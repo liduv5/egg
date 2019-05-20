@@ -15,20 +15,8 @@ const Controller = require('egg').Controller;
 
 class AccessController extends Controller {
   async index() {
-    let result = await this.ctx.model.Access.aggregate([
-      {
-        $lookup: {
-          from: 'access',
-          localField: '_id',
-          foreignField: 'module_id',
-          as: 'children'
-        }
-      },
-      {
-        $match: { 'module_id': '0' }
-      }
-    ]);
-    this.ctx.body = result
+    let res = await this.service.access.find()
+    this.ctx.body = res
   }
   async findOne() {
     let req = this.ctx.request.body;

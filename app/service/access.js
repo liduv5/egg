@@ -21,8 +21,20 @@ class AccessService extends Service {
     return res;
   }
 
-  async find(req) {
-    let res = await this.ctx.model.Access.find(req);
+  async find() {
+    let res = await this.ctx.model.Access.aggregate([
+      {
+        $lookup: {
+          from: 'access',
+          localField: '_id',
+          foreignField: 'module_id',
+          as: 'children'
+        }
+      },
+      {
+        $match: { 'module_id': '0' }
+      }
+    ]);
     return res;
   }
 

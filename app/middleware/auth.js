@@ -13,6 +13,8 @@ module.exports = (option, app) => {
       ctx.state.userinfo = ctx.session.userinfo;
       let hasAuth = await ctx.service.admin.checkAuth();
       if (hasAuth) {
+        let accessResult = await ctx.service.access.find()
+        console.log(accessResult)
         await next();
       } else {
         ctx.body = "您没有访问权限！";
