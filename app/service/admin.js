@@ -1,3 +1,9 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable quotes */
+/* eslint-disable quote-props */
+/* eslint-disable no-multi-spaces */
+/* eslint-disable prefer-const */
+/* eslint-disable semi */
 'use strict';
 
 const Service = require('egg').Service;
@@ -9,8 +15,8 @@ class AdminService extends Service {
     let userinfo = this.ctx.session.userinfo
     let role_id = userinfo.role_id
     let pathname = url.parse(this.ctx.request.url).pathname    // 获取当前访问的地址
-    let ignoreUrl = ['/login']
-    if (ignoreUrl.includes(pathname) || userinfo.is_super === 1) {
+    let ignoreUrl = [ '/login' ]
+    if (ignoreUrl.includes(pathname) || userinfo.is_super === '1') {
       return true
     }
     /* 2、获取当前角色的权限列表 */
