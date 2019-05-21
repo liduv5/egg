@@ -9,16 +9,16 @@ class LoginController extends Controller {
   async index() {
     let req = this.ctx.request.body;
     let res = await this.service.user.findOne(req, { password: 0 });
-    this.ctx.session.userinfo = null
-    this.ctx.session.userinfo = res
-    this.ctx.body = res
+    this.ctx.session.userinfo = null;
+    this.ctx.session.userinfo = res;
+    this.ctx.body = res;
   }
   async logout() {
     let req = this.ctx.request.body;
     if (req.nuxtLogout) {
-      this.ctx.session.userinfo = null
+      this.ctx.session.userinfo = null;
     }
-    this.ctx.body = 'ok'
+    this.ctx.body = 'ok';
   }
 }
 
