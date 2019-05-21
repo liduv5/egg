@@ -24,6 +24,10 @@ module.exports = app => {
     },
     role_id: {
       type: Schema.Types.ObjectId,
+    },
+    is_super: {
+      type:Number,
+      default:0
     }
   });
   return mongoose.model('User', UserSchema, 'user');
