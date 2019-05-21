@@ -32,5 +32,5 @@ module.exports = app => {
   router.del('/users/access/deleteAccess/:_id', controller.access.delete);
 
 
-  router.get('/menu',controller.menu.index)
+  router.get('/menu', controller.menu.index);
 };
