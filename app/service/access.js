@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 /* eslint-disable no-empty */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable comma-dangle */
@@ -32,7 +33,7 @@ class AccessService extends Service {
         }
       },
       {
-        $match: { 'module_id': '0' }
+        $match: { module_id: '0' }
       }
     ]);
     return res;

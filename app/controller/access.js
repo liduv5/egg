@@ -26,7 +26,7 @@ class AccessController extends Controller {
   async add() {
     let req = this.ctx.request.body;
     let module_id = req.module_id
-    if (module_id !== '0') {req.module_id = this.app.mongoose.Types.ObjectId(module_id)}
+    if (module_id !== '0') { req.module_id = this.app.mongoose.Types.ObjectId(module_id) }
     let res = await this.service.access.add(req)
     this.ctx.body = res
   }
