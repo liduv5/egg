@@ -7,7 +7,7 @@ const Controller = require('egg').Controller;
 class MenuController extends Controller {
   async index() {
     // 1、获取全部权限
-    let accessAll = await this.service.access.find();
+    let accessAll = await this.service.access.findG();
     // 2、 获取当前角色拥有的权限 将acces_id放入数组
     let userinfo = this.ctx.state.userinfo;
     let role_id = userinfo.role_id;

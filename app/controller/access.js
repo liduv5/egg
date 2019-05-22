@@ -15,6 +15,11 @@ const Controller = require('egg').Controller;
 
 class AccessController extends Controller {
   async index() {
+    let res = await this.service.access.findG()
+    this.ctx.body = res
+  }
+  // 非聚合查询
+  async find() {
     let res = await this.service.access.find()
     this.ctx.body = res
   }

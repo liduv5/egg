@@ -25,7 +25,8 @@ module.exports = app => {
   router.post('/users/roles/auth', controller.role.auth);
   router.post('/users/roles/getAuth', controller.role.getAuth);
   /* 权限 */
-  router.get('/users/access', controller.access.index);
+  router.get('/users/access', controller.access.index);  // 聚合查询
+  router.get('/users/access/find', controller.access.find);
   router.post('/users/access/addAccess', controller.access.add);
   router.post("/users/access/findOne", controller.access.findOne);
   router.put('/users/access/updateAccess', controller.access.update);

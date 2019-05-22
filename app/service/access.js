@@ -21,8 +21,11 @@ class AccessService extends Service {
     let res = await this.ctx.model.Access.findOne(req, field);
     return res;
   }
-
   async find() {
+    let res = await this.ctx.model.Access.find();
+    return res;
+  }
+  async findG() {
     let res = await this.ctx.model.Access.aggregate([
       {
         $lookup: {
