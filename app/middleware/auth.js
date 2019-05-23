@@ -15,6 +15,7 @@ module.exports = (option, app) => {
       if (hasAuth) {
         await next();
       } else {
+        ctx.status = 456;
         ctx.body = "您没有访问权限！";
       }
     } else {
