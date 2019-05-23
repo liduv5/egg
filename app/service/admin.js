@@ -15,7 +15,7 @@ class AdminService extends Service {
     let userinfo = this.ctx.session.userinfo
     let role_id = userinfo.role_id
     let pathname = url.parse(this.ctx.request.url).pathname    // 获取当前访问的地址
-    let ignoreUrl = [ '/login', '/menu' ]
+    let ignoreUrl = [ '/login', '/logout', '/menu' ]
     if (ignoreUrl.includes(pathname) || userinfo.is_super === 1) {
       return true
     }
