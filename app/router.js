@@ -10,6 +10,7 @@ module.exports = app => {
   /* 登录 */
   router.post("/login", controller.login.index);
   router.post("/logout", controller.login.logout);
+  router.get("/islogin", controller.login.islogin);
   /* 用户 */
   router.get("/users", controller.user.index);
   router.post("/users/addUser", controller.user.addUser);

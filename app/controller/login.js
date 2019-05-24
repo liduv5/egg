@@ -20,6 +20,9 @@ class LoginController extends Controller {
     }
     this.ctx.body = 'ok';
   }
+  async islogin(){
+    this.ctx.body = this.ctx.session.userinfo
+  }
 }
 
 module.exports = LoginController;
