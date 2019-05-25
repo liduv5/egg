@@ -22,7 +22,9 @@ module.exports = (option, app) => {
       if (pathname === "/login" || pathname === "/logout" || pathname === "/islogin") {
         await next();
       } else {
-        return false;
+        ctx.status = 403;
+        ctx.body = "请重新登录！";
+        // return false;
       }
     }
   };
