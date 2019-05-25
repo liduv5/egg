@@ -19,7 +19,7 @@ module.exports = (option, app) => {
         ctx.body = "您没有访问权限！";
       }
     } else {
-      if (pathname === "/login" || pathname === "/islogin") {
+      if (pathname === "/login" || pathname === "/logout" || pathname === "/islogin") {
         await next();
       } else {
         return false;
