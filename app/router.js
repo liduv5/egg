@@ -32,7 +32,9 @@ module.exports = app => {
   router.post("/users/access/findOne", controller.access.findOne);
   router.put('/users/access/updateAccess', controller.access.update);
   router.del('/users/access/deleteAccess/:_id', controller.access.delete);
-
-
+/* 获取菜单 */
   router.get('/menu', controller.menu.index);
+  /* 上传图片 */
+  router.get('/focus', controller.focus.index);
+  router.post('/focus/addFocus', controller.focus.addFocus);
 };

@@ -15,6 +15,8 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1554105114269_6784';
+  config.uploadDir='app/public/upload';
+
   config.session = {
     key: 'SESSION_ID',
     maxAge: 8640000,
@@ -49,6 +51,10 @@ module.exports = appInfo => {
     origin: 'http://localhost:3000',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
     credentials: true
+  };
+  /* 上传配置 */
+  config.multipart = {
+    whitelist: ['.jpg','.png','.docx']
   };
   // add your user config here
   const userConfig = {
