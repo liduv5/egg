@@ -1,7 +1,10 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-multi-spaces */
+/* eslint-disable prefer-const */
 'use strict';
 
 const fs = require('fs');
-const pump = require('mz-modules/pump')
+const pump = require('mz-modules/pump');
 
 const Controller = require('egg').Controller;
 
@@ -30,8 +33,8 @@ class FocusController extends Controller {
       await pump(stream, writeStream);
 
       files = Object.assign(files, {
-        [fieldname]: dir.saveDir
-      })
+        [fieldname]: dir.saveDir,
+      });
     }
     let focus = new this.ctx.model.Focus(Object.assign(files, parts.field));
     let res = await focus.save();
