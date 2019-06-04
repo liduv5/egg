@@ -15,7 +15,7 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1554105114269_6784';
-  config.uploadDir='app/public/upload';
+  config.uploadDir = 'app/public/upload';
 
   config.session = {
     key: 'SESSION_ID',
@@ -54,7 +54,7 @@ module.exports = appInfo => {
   };
   /* 上传配置 */
   config.multipart = {
-    whitelist: ['.jpg','.png','.docx']
+    whitelist: [ '.jpg', '.png', '.docx' ]
   };
   // add your user config here
   const userConfig = {
