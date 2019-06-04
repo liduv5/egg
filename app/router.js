@@ -37,4 +37,8 @@ module.exports = app => {
   /* 上传图片 */
   router.get('/focus', controller.focus.index);
   router.post('/focus/addFocus', controller.focus.addFocus);
+  router.post("/focus/findOne", controller.focus.findOne);
+  router.put("/focus/updateFocus", controller.focus.updateFocus);
+  router.del('/focus/deleteFocus/:_id', controller.focus.delete);
+
 };
