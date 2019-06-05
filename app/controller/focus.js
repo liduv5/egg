@@ -82,7 +82,7 @@ class FocusController extends Controller {
     let resOne = await this.service.focus.findOne(req);
     let res = await this.service.focus.delete(req);
     let image = path.join('app/', resOne.focus_img);
-    fs.unlinkSync(image);
+    fs.existsSync(image)&&fs.unlinkSync(image);
     this.ctx.body = res;
   }
   async deleteImage() {
