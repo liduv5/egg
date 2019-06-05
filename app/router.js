@@ -26,13 +26,13 @@ module.exports = app => {
   router.post('/users/roles/auth', controller.role.auth);
   router.post('/users/roles/getAuth', controller.role.getAuth);
   /* 权限 */
-  router.get('/users/access', controller.access.index);  // 聚合查询
+  router.get('/users/access', controller.access.index);
   router.get('/users/access/find', controller.access.find);
   router.post('/users/access/addAccess', controller.access.add);
   router.post("/users/access/findOne", controller.access.findOne);
   router.put('/users/access/updateAccess', controller.access.update);
   router.del('/users/access/deleteAccess/:_id', controller.access.delete);
-/* 获取菜单 */
+  /* 获取菜单 */
   router.get('/menu', controller.menu.index);
   /* 上传图片 */
   router.get('/focus', controller.focus.index);
@@ -40,5 +40,6 @@ module.exports = app => {
   router.post("/focus/findOne", controller.focus.findOne);
   router.put("/focus/updateFocus", controller.focus.updateFocus);
   router.del('/focus/deleteFocus/:_id', controller.focus.delete);
+  router.post('/focus/deleteImage', controller.focus.deleteImage);
 
 };

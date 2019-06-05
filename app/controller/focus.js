@@ -4,6 +4,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const pump = require('mz-modules/pump');
 
 const Controller = require('egg').Controller;
@@ -15,8 +16,8 @@ class FocusController extends Controller {
   }
   async findOne() {
     let req = this.ctx.request.body;
-    let res = await this.service.focus.findOne(req)
-    this.ctx.body = res
+    let res = await this.service.focus.findOne(req);
+    this.ctx.body = res;
   }
   async addFocus() {
     const parts = this.ctx.multipart({ autoFields: true });
@@ -24,11 +25,12 @@ class FocusController extends Controller {
     let files = {};
     let stream;
     while ((stream = await parts()) != null) {
-      if (!stream.filename) {            // 注意如果没有传入图片直接返回   
+      if (!stream.filename) {
+        // 注意如果没有传入图片直接返回
         break;
       }
 
-      let fieldname = stream.fieldname;  // file表单的名字  focus_img
+      let fieldname = stream.fieldname; // file表单的名字  focus_img
 
       // 上传图片的目录
       let dir = await this.service.tools.getUploadFile(stream.filename);
@@ -45,17 +47,18 @@ class FocusController extends Controller {
     let res = await focus.save();
     this.ctx.body = res;
   }
-  async updateFocus(){
+  async updateFocus() {
     const parts = this.ctx.multipart({ autoFields: true });
 
     let files = {};
     let stream;
     while ((stream = await parts()) != null) {
-      if (!stream.filename) {            // 注意如果没有传入图片直接返回   
+      if (!stream.filename) {
+        // 注意如果没有传入图片直接返回
         break;
       }
 
-      let fieldname = stream.fieldname;  // file表单的名字  focus_img
+      let fieldname = stream.fieldname; // file表单的名字  focus_img
 
       // 上传图片的目录
       let dir = await this.service.tools.getUploadFile(stream.filename);
@@ -68,13 +71,25 @@ class FocusController extends Controller {
         [fieldname]: dir.saveDir,
       });
     }
-    let res = await this.ctx.model.Focus.updateOne({ _id: parts.field.id, }, Object.assign(files, parts.field));
+    let res = await this.ctx.model.Focus.updateOne(
+      { _id: parts.field.id },
+      Object.assign(files, parts.field)
+    );
     this.ctx.body = res;
   }
   async delete() {
-    let req = this.ctx.params
-    let res = await this.service.focus.delete(req)
-    this.ctx.body = res
+    let req = this.ctx.params;
+    let resOne = await this.service.focus.findOne(req);
+    let res = await this.service.focus.delete(req);
+    let image = path.join('app/', resOne.focus_img);
+    fs.unlinkSync(image);
+    this.ctx.body = res;
+  }
+  async deleteImage() {
+    let req = this.ctx.request.body;
+    let image = path.join('app/', req.path);
+    fs.unlinkSync(image);
+    this.ctx.body = 'ok';
   }
 }
 module.exports = FocusController;
